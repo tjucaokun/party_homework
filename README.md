@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <a href="https://www.patreon.com/vladimirkharlampidi"><img src="https://cdn.framework7.io/i/support-badge.png" height="20"></a>
 [![Join the chat at https://gitter.im/nolimits4web/Framework7](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nolimits4web/Framework7)
 [![Build Status](https://travis-ci.org/framework7io/framework7.svg?branch=master)](https://travis-ci.org/framework7io/framework7)
@@ -92,3 +93,6 @@ Appstore apps made with Framework7: http://framework7.io/showcase/
 ## v1
 
 Old v1 version of Framework7 is still available at [v1 branch](https://github.com/framework7io/Framework7/tree/v1)
+=======
+# party_homework
+>>>>>>> e132d852664710e3e1bbb538d079c93ff5664119

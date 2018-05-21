@@ -43,8 +43,30 @@ var mainView = app.views.create('.view-main');
 var url1 = 'http://127.0.0.1:2999/posts';
 var url2 = 'http://127.0.0.1:2999/profile';       
 
+let datas=[];
+var id = -1;
+var score = 0;
+var ans;
+var able=1;
+var keep=1;
 let ranknum = 0 ;
 var ranks = [];
+var len;
+
+function BeginGame(){
+    console.log('begin');
+    var b = app.request.json(url1,null,function(data){
+        console.log(data);
+        console.log("asd");
+
+        datas = data;
+        len=(data.length);
+        console.log(len);
+        showDeterminate(true,keep);
+        fresh();
+    },null);
+};
+
 app.on('pageInit',function (e) {
 // do something on page init
     // var page = e.detail.page;
@@ -63,15 +85,51 @@ app.on('pageInit',function (e) {
         },100);
         
     }
-    else if (e.route.url == '/end/'){
+    else if (e.route.url == '/end/'||e.route.url =='./pages/end.html'){
         initend();
     }
+    else if (e.route.url == '/main/'){
+        initmain();
+    }
 });
+
+function initmain() {
+    $('.set-inline-progress').on('click', function (e) {
+        var progress = $(this).attr('data-progress');
+        app.progressbar.set('#demo-inline-progressbar', progress);
+      });
+      
+      
+      // Function show determinate progressbar and emulate loading
+    // console.log( $('#1').width());
+    $('#1').on('click',function()
+    {
+        choose(1);
+    });
+    $('#2').on('click',function()
+    {
+        choose(2);
+    });
+    $('#3').on('click',function()
+    {
+        choose(3);
+    });
+    $('#4').on('click',function()
+    {
+        choose(4);
+    });
+
+    $('#6').on('click',function(){
+        
+        fresh();
+    });
+}
 function initend(){
+    $('#sco').text(score);
     $('#confirm').on('click',function(){
         name = $('#name').val();
         app.request.postJSON(url2,
-            {name:name,score:55},
+            {name:name,score:score},
             success => console.log(success),
             error => console.log(error));
     })
@@ -104,4 +162,101 @@ function getDataRow(h){
 } 
 function sortscore(a,b){
     return b.score - a.score;
+}
+
+function next()
+{
+    console.log(datas[id]);
+
+    id+=1;
+}
+
+function choose(sid)
+{
+    if(able==1){
+    ans = datas[id].ct;
+    console.log(id);
+    console.log(datas[1]);
+    var str1='#'+sid;
+    var str2='#'+ans;
+
+    console.log(str1+' '+str2);
+    if(sid==ans)
+    {
+        score+=10;
+
+        $(str1).css({'background-color': 'rgb(0, 200, 0)'});
+
+    }
+    else
+    {
+        $(str1).css({'background-color': 'rgb(200, 0, 0)'});
+        $(str2).css({'background-color': 'rgb(0, 200, 0)'});
+    }
+
+    able=0;
+    setTimeout(fresh,300);
+    
+    }
+};
+
+determinateLoading = false;
+var progress = 0;
+function showDeterminate(inline,tp) {
+  determinateLoading = true;
+  var progressBarEl;
+  if (inline) {
+    // inline progressbar
+    progressBarEl = app.progressbar.show('#demo-determinate-container', 0);
+  }
+  
+  function simulateLoading(tp) {
+    setTimeout(function () {
+      var progressBefore = progress;
+      progress += 0.1 * 30;
+      app.progressbar.set(progressBarEl, progress);
+      if (progressBefore < 100 ) {
+        simulateLoading(tp); //keep "loading"
+      }
+      else if(id<len){
+        determinateLoading = false;
+        //app.progressbar.hide(progressBarEl); //hide
+        fresh();
+        simulateLoading(tp); 
+      }
+    }, 0.1 * 1000 + 200);
+  }
+  simulateLoading(tp);
+}
+// show inline determinate progressbar
+function fresh()
+{
+    progress = 0;
+    id+=1;
+    if(id>=len)
+    {
+        
+        mainView.router.load({
+            path: '/end/',
+            url: './pages/end.html'
+        });
+    }
+    else{
+    console.log(id);
+    $('#5').text(score);
+    $('#0').text(datas[id]);
+    $('#1').text(datas[id].id);
+    $('#2').text(datas[id].title);
+    $('#3').text(datas[id].author);
+    $('#4').text(datas[id].ct);
+    $('#1').css({'background-color': 'rgb(250, 250, 250)'});
+    $('#2').css({'background-color': 'rgb(250, 250, 250)'});
+    $('#3').css({'background-color': 'rgb(250, 250, 250)'});
+    $('#4').css({'background-color': 'rgb(250, 250, 250)'});
+    keep+=1;
+    able=1;
+    }
+    
+    //showDeterminate(true,keep);
+    
 }

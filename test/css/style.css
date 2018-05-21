@@ -1,0 +1,52 @@
+
+.level {
+  /* background: url(../images/bg.png) no-repeat center; */
+  position: relative;
+}
+.level h2 {
+  font-size: 40px;
+  text-align: center;
+  height: 60px;
+  line-height: 94px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  font-family: "hupo";
+}
+.level .chooseLevel {
+  left: 376px;
+  top: 94px;
+  width: 100%;
+}
+.level .chooseLevel div {
+  /* width: 128px; */
+  width: 33.333333333333336%;
+  width: calc((100% - 16px*2) / 3);
+  height: 128px;
+  margin-right: 10px;
+  margin-top: 22px;
+  float: left;
+  background: url(../images/btn3.png) no-repeat center;
+  background-size: 100%;
+  font-size: 70px;
+  line-height: 128px;
+  text-align: center;
+  font-weight: bold;
+  font-family: "hupo";
+}
+.level .chooseLevel .levelOpen {
+  width: 33.333333333333336%;
+  width: calc((100% - 16px*2) / 3);
+  background: url(../images/btn1.png) no-repeat center;
+  background-size: 102%;
+}
+.level .menu {
+  right: 28px !important;
+}
+.transiton {
+  width: 1166px;
+  height: 650px;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  z-index: 999;
+}

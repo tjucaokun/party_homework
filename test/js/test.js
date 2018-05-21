@@ -52,6 +52,7 @@ var keep=1;
 let ranknum = 0 ;
 var ranks = [];
 var len;
+localStorage.setItem('level',1);
 
 function BeginGame(){
     console.log('begin');
@@ -70,6 +71,7 @@ function BeginGame(){
 app.on('pageInit',function (e) {
 // do something on page init
     // var page = e.detail.page;
+
     console.log(e.route.url)
     if (e.route.url == '/ranks/'){
         setTimeout(function initranks(){
@@ -87,6 +89,10 @@ app.on('pageInit',function (e) {
     }
     else if (e.route.url == '/end/'||e.route.url =='./pages/end.html'){
         initend();
+    }
+    else if (e.route.url =='/checkpoint/'){
+        passpoint();
+        initcheckpoint();
     }
     else if (e.route.url == '/main/'){
         initmain();
@@ -124,6 +130,7 @@ function initmain() {
         fresh();
     });
 }
+//结束页面逻辑
 function initend(){
     $('#sco').text(score);
     $('#confirm').on('click',function(){
@@ -135,6 +142,7 @@ function initend(){
     })
 }
 
+//排行榜逻辑
 function appendtbody(ranks){
     var tbody = document.getElementById('tbody');
     for( var i=0; i< ranks.length; i++){
@@ -163,6 +171,8 @@ function getDataRow(h){
 function sortscore(a,b){
     return b.score - a.score;
 }
+
+//main逻辑
 
 function next()
 {
@@ -259,4 +269,45 @@ function fresh()
     
     //showDeterminate(true,keep);
     
+}
+//选关页面逻辑
+function initcheckpoint() {
+    levelFn();
+}
+
+function levelFn() {
+    var level = document.getElementsByClassName('level')[0];
+    level.style.display = 'block';
+    var choose = level.getElementsByClassName('chooseLevel')[0];
+    var theLevel = choose.getElementsByTagName('div');
+    var menu = level.getElementsByClassName('menu')[0];
+    var highest = localStorage.getItem('level');
+    for (var i = 0; i < highest; i++) {
+        theLevel[i].innerHTML = i + 1;
+        theLevel[i].className = 'levelOpen';
+        theLevel[i].onclick = function() {
+            mainView.router.load({
+                path: '/main/',
+                url: './pages/main.html'
+            });
+        }
+    }
+
+}
+
+function passpoint(){
+    var num = localStorage.getItem('level');
+    console.log(num);
+    num++;
+    localStorage.setItem('level',num);
+    if (score>=80){
+        var num = localStorage.getItem('level');
+        console.log(num);
+        num++;
+        localStorage.setItem('level',num);
+
+        return true;
+    }else{
+        return false;
+    }
 }

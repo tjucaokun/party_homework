@@ -1,0 +1,76 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2
+    },
+    {
+      "author": "ck",
+      "id": 3,
+      "title": "ck"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "name": "ck",
+      "score": 100
+    },
+    {
+      "id": 2,
+      "name": "ca",
+      "score": 99
+    },
+    {
+      "id": 3,
+      "name": "ca",
+      "score": 188
+    },
+    {
+      "name": "csa",
+      "score": 55,
+      "id": 4
+    },
+    {
+      "name": "asd",
+      "score": 55,
+      "id": 5
+    },
+    {
+      "name": "asd",
+      "score": 55,
+      "id": 6
+    },
+    {
+      "name": "asd",
+      "score": 55,
+      "id": 7
+    },
+    {
+      "name": "asd",
+      "score": 55,
+      "id": 8
+    },
+    {
+      "name": "asd",
+      "score": 55,
+      "id": 9
+    },
+    {
+      "name": "asd",
+      "score": 55,
+      "id": 10
+    }
+  ]
+}

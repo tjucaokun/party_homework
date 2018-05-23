@@ -6,53 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- Color theme for statusbar -->
-    <meta name="theme-color" content="#2196f3">
+    <meta name="theme-color" content="#FAE8D9">
     <!-- Your app title -->
     <title>My App</title>
     <!-- Path to Framework7 Library CSS, Material Theme -->
-    <link rel="stylesheet" href="./css/framework7.css">
+    <link rel="stylesheet" href="css/framework7.css">
     <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="./test.css">
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/test.css">
   </head>
-  <body>
+  <body class="lululu">
     <!-- App root element -->
-    <div id="app">
+    <div id="app" class="lululu" style="background-color: #FAE8D9">
       <!-- Statusbar overlay -->
-      <div class="statusbar ">lalala</div>
+      <div class="statusbar">lalala</div>
 
       <!-- Your main view, should have "view-main" class -->
-      <div class="view view-main color-theme-blue">
+      <div class="view view-main">
 
         <!-- Initial Page, "data-name" contains page name -->
         <div data-name="home" class="page">
-
-          <!-- Top Navbar -->
-          <!-- <div class="navbar ">
-            <div class="navbar-inner">
-              <div class="title">Awesome App</div>
+            <div class="end-content-1">
+                <p class="index-head">弄潮er</p>
+                <p class="index-head-2">
+                    要坚定理想信念，志存高远，脚踏实地，勇做时代的弄潮儿
+                </p>
+                <p class="index-head-3">
+                    ——习近平
+                </p>
+                <div class="enheng">
+                    <button class="index-button-start">
+                        <a href="/main/" onclick="BeginGame()">开始游戏</a>
+                    </button>
+                </div>
+                <div class="enenen">
+                    <a href="/ranks/" class="index-rank">排行榜</a>
+                </div>
+                <a class="button" href="/end/">结束</a>
+                <a class="button" href="/checkpoint/">选关</a>
             </div>
-          </div> -->
-
-          <!-- Toolbar -->
-          <div class="toolbar">
-            <div class="toolbar-inner">
-              <!-- Toolbar links -->
-              <a href="#" class="link">Link 1</a>
-              <a href="#" class="link">Link 2</a>
-            </div>
-          </div>
-
-          <!-- Scrollable page content -->
-          <div class="page-content">
-            <p class="text-align-center">弄潮儿</p>
-            <a class="button" href="/main/" onclick="BeginGame()">开始游戏</a>
-            <a class="button" href="/ranks/">排行榜</a>
-            <a class="button" href="/end/">结束</a>
-            <a class="button" href="/checkpoint/">选关</a>
-            <!-- Link to another page -->
-            <a href="/main/">About app</a>
-          </div>
+            <div class="try"></div>
         </div>
       </div>
     </div>

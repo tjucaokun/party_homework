@@ -1,23 +1,30 @@
-<div class="page">
-        <div class="navbar">
-          <div class="navbar-inner sliding">
-            <div class="left">
-              <a href="#" class="link back">
-                <i class="icon icon-back"></i>
-                <span class="ios-only">Back</span>
-              </a>
-            </div>
-            <div class="title">游戏结束</div>
-          </div>
+<link rel="stylesheet" href="../css/test.css">
+<link rel="stylesheet" href="../css/framework7.css">
+<div class="page page-current lululu">
+        <div>
+                <div class="end-content">
+                        <p class="game-end">
+                            游戏结束
+                        </p>
+                        <p class="score-end">
+                            总积分
+                        </p>
+                        <p class="score-number" id="sco">
+                            34
+                        </p>
+                    </div>
+                    <div class="input-block">
+                        <p>请输入您的名字</p>
+                        <input class="input-name" id='name'></input>
+                        <p class="limit">最多输入十个字符</p>
+                    </div>
+                    <button class="to-determine">
+                        <a id="confirm" href="/ranks/">确定</a>
+                    </button>
+                    <div class="div-for-bottom-end">
+                        <a class="a-bottom" href="/index/">返回首页</a>
+                    </div>
+                    <div class="try"></div>
         </div>
-        <div class="page-content">
-          <div class="block block-strong">
-            <p>游戏结束</p>
-            <p>总积分</p>
-            <p id="sco">34</p>
-            <input placeholder="请输入您的名字" id='name'></input>
-            <a class="button" id="confirm" href="/ranks/">确定</a>
-            <a class="button" href="/index/">返回首页</a>
-          </div>
-        </div>
-      </div>
+        
+</div>

@@ -15,19 +15,19 @@
     <link rel="stylesheet" href="./test.css">
   </head>
 
-  <body>
+  <body class="lululu">
     <!-- App root element -->
     <div id="app">
       <!-- Statusbar overlay -->
       <div class="statusbar">lalala</div>
 
       <!-- Your main view, should have "view-main" class -->
-      <div class="view view-main color-theme-blue">
+      <div class="view view-main">
 
         <!-- Initial Page, "data-name" contains page name -->
         <div data-name="home" class="page">
 
-          <div class="navbar">
+          <!-- <div class="navbar">
             <div class="navbar-inner sliding">
               <div class="left">
                 <a href="#" class="link back">
@@ -35,36 +35,41 @@
                   <span id= 'data' class="ios-only">Back</span>
                 </a>
               </div>
-              <div class="title">排行榜</div>
+              <div class="title">弄潮Er</div>
             </div>
-          </div>
-          <div class="toolbar">
-            <div class="toolbar-inner">
-              <!-- Toolbar links -->
-              <a href="#" class="link">Link 1</a>
-              <a href="#" class="link">Link 2</a>
-            </div>
+          </div> -->
+          
+          <div class="div-for-head">
+              <div class="total-score">
+                    <p>总积分</p>
+                    <p id="5">999</p>
+              </div>
+              <div class="time">
+                  <p class="time-word">剩余时间</p>
+                  <p class="time-number">7</p>
+              </div>
+              <div class="question-number">
+                  <p>剩余题量</p>
+                  <p id="7">10</p>
+              </div>  
           </div>
 
-          <!-- Scrollable page content -->
-          <div class="page-content">
-           
-            <p id="0">题目</p>
-            <p id="5">得分</p>
-
-            <p>Inline determinate load & hide:</p>
-            <p id="demo-determinate-container"></p>
-           
-
-            <button class="button" id="6">next</button>
-            <button class="button" id="1" >1</button>
-            <button class="button" id="2" >2</button>
-            <button class="button" id="3" >3</button>
-            <button class="button" id="4" >4</button>
-            
-            <!-- Link to another page -->
-            <a href="/main/">About app</a>
+          <div class="div-for-middle" id="0">
+              <p>十九大的主题是：不忘初心，____，高举中国特色社会主义伟大旗帜…</p>
           </div>
+
+          <div class="div-for-button">
+                <button class="button-1" id="1" >继续前进</button>
+                <button class="button-1" id="2">牢记使命</button>
+                <button class="button-1" id="3">方得始终</button>
+                <button class="button-1" id="4" >砥砺前行</button>
+          </div>
+
+          <div class="div-for-bottom">
+              <a href="/index/">返回首页</a>
+          </div>
+
+          <div class="try"></div>
         </div>
       </div>
     </div>

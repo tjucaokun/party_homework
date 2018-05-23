@@ -172,7 +172,7 @@ p {
   display: none !important;
 }
 .md a {
-  color: #2196f3;
+  /* color: #2196f3; */
 }
 .md .theme-dark {
   color: rgba(255, 255, 255, 0.87);
@@ -667,7 +667,7 @@ html.with-statusbar.device-iphone-x .framework7-root {
   z-index: 10000;
 }
 .md .page {
-  background: #fff;
+  background: #FAE8D9;
 }
 .md .page-next {
   -webkit-transform: translate3d(0, 56px, 0);

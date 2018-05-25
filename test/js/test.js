@@ -1,3 +1,5 @@
+
+
 var $ = Dom7 ; 
 
 var app = new Framework7({
@@ -46,6 +48,7 @@ var url2 = 'http://127.0.0.1:2999/profile';
 let datas=[];
 var id = -1;
 var score = 0;
+var tscore = 0;
 var ans;
 var able=1;
 var keep=1;
@@ -54,6 +57,8 @@ var ranks = [];
 var len;
 var cas = 0;
 localStorage.setItem('level',1);
+var qnum;
+var timebar = 0 ;
 
 function getdata()
 {
@@ -62,7 +67,7 @@ function getdata()
         // console.log("asd");
 
         datas = data;
-        len=(data.length);
+        //len=(data.length);
         console.log(len);
     },null);
 }
@@ -73,35 +78,45 @@ function lev()
     //console.log(data);
     //console.log("asd");
     //datas = data;
+    qnum=5;
     len = (datas.length);
-    score = 0;
+    tscore = 0;
     console.log(len);
     id = parseInt(Math.random() * (len - 5));
     len = id + 5;
     id--;
+    
+    timebar+=1;
+    console.log("sba:"+timebar);
     showDeterminate(true, keep);
+    
     fresh();
     //console.log(len);
     
 }
 function BeginGame(){
+    qnum=50;
     cas = 0;
     id = -1;
     score = 0;
+     timebar++;
     console.log('begin');
-    var b = app.request.json(url1,null,function(data){
+    //var b = app.request.json(url1,null,function(data){
         // console.log(data);
         // console.log("asd");
 
-        datas = data;
-        len=(data.length);
+        ///datas = data;
+        len=(datas.length);
         console.log(len);
+
         showDeterminate(true,keep);
+        
         fresh();
-    },null);
+    //},null);
 };
 getdata();
 app.on('pageInit',function (e) {
+    getdata();
 // do something on page init
     // var page = e.detail.page;
 
@@ -122,15 +137,27 @@ app.on('pageInit',function (e) {
     }
     else if (e.route.url == '/end/'||e.route.url =='./pages/end.html'){
         initend();
+        timebar=0;
+        score=0;
     }
     else if (e.route.url =='/checkpoint/'||e.route.url =='./pages/checkpoint.html'){
-        passpoint();
+        //passpoint();
+        timebar=0;
         initcheckpoint();
+
     }
     else if (e.route.url == '/main/'||e.route.url =='./pages/main.html'){
+        //timebar=0;
         if(cas == 1)
             lev();
+        else
+            BeginGame();
+
         initmain();
+    }
+    else if(e.route.url == '/index/'||e.route.url =='./index.html')
+    {
+        timebar=0;
     }
 });
 function c1(){choose(1);}
@@ -221,7 +248,7 @@ function next()
 function choose(sid)
 {
     if(able==1){
-    ans = datas[id].ct;
+    ans = datas[id].ans;
     console.log(id);
     console.log(datas[1]);
     var str1='#'+sid;
@@ -231,7 +258,7 @@ function choose(sid)
     if(sid==ans)
     {
         score+=10;
-
+        tscore+=10;
         $(str1).css({'background-color': 'rgb(0, 200, 0)'});
 
     }
@@ -246,29 +273,50 @@ function choose(sid)
     
     }
 };
-
+var cnt=0;
 var progress = 0;
 function showDeterminate(inline,tp) {
   determinateLoading = true;
   var progressBarEl;
+  
   if (inline) {
     // inline progressbar
     progressBarEl = app.progressbar.show('#demo-determinate-container', 0);
   }
   
   function simulateLoading(tp) {
+      console.log(timebar);
+    //app.progressbar.set(progressBarEl, progress);
+    if(timebar>1){
+        timebar--;
+    return ;
+    }
+    if (timebar==0)
+    { return ;}
+    
+    //app.progressbar.set(progressBarEl, progress);
     setTimeout(function () {
+
       var progressBefore = progress;
       progress += 0.1 * 30;
       app.progressbar.set(progressBarEl, progress);
-      if (progressBefore < 100 ) {
+      
+      cnt+=0.25;
+      $("#100").text(8-parseInt(cnt));
+      if (progressBefore < 100 && id<len) {
         simulateLoading(tp); //keep "loading"
       }
       else if(id<len){
         determinateLoading = false;
+        
         //app.progressbar.hide(progressBarEl); //hide
         fresh();
         simulateLoading(tp); 
+      }
+      else
+      {
+          cnt=0;
+          //timebar--;
       }
     }, 0.1 * 1000 + 200);
   }
@@ -279,9 +327,9 @@ function fresh()
 {
     progress = 0;
     id+=1;
+    cnt=0;
     if(id>=len)
     {
-
         if(cas==0){
             mainView.router.load({
             path: '/end/',
@@ -290,11 +338,17 @@ function fresh()
         }
         else
         {
-            passpoint();
+            if(passpoint()){
             mainView.router.load({
                 path: '/checkpoint/',
                 url: './pages/checkpoint.html'
-            });
+            });}
+            else
+            {
+                mainView.router.load({
+                    path: '/end/',
+                    url: './pages/end.html'});
+            }
 
             console.log("leve  "+localStorage.getItem('level'));
         }  
@@ -302,11 +356,13 @@ function fresh()
     else{
     //console.log(id);
     $('#5').text(score);
-    $('#0').text(datas[id]);
-    $('#1').text(datas[id].id);
-    $('#2').text(datas[id].title);
-    $('#3').text(datas[id].author);
-    $('#4').text(datas[id].ct);
+    $('#0').text(datas[id].question);
+    $('#1').text(datas[id].s1);
+    $('#2').text(datas[id].s2);
+    $('#3').text(datas[id].s3);
+    $('#4').text(datas[id].s4);
+    $('#7').text(qnum);
+    qnum--;
     $('#1').css({'background-color': 'rgb(250, 250, 250)'});
     $('#2').css({'background-color': 'rgb(250, 250, 250)'});
     $('#3').css({'background-color': 'rgb(250, 250, 250)'});
@@ -334,6 +390,7 @@ function levelFn() {
         theLevel[i].innerHTML = i + 1;
         theLevel[i].className = 'levelOpen';
         theLevel[i].onclick = function() {
+            cas=1;
             mainView.router.load({
                 path: '/main/',
                 url: './pages/main.html'
@@ -344,7 +401,7 @@ function levelFn() {
 }
 
 function passpoint(){
-    if (score>=20){
+    if (tscore>=20){
         var num = localStorage.getItem('level');
         // console.log(num);
         num++;
